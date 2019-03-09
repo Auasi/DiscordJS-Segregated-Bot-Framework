@@ -1,27 +1,8 @@
-// Welcome new users with their username and profile picture.
-// exports.onReady = () => {
-//   client.on('guildMemberAdd', (member) => {
-//     // client.channels.get("554023863697145878").send(`Welcome, <@${member.id}>!`);
-//     client.channels.get("554023863697145878").send(new global.discord.RichEmbed()
-//       .setTitle('Welcome')
-//       .setColor(global.options.themeColor)
-//       .setThumbnail(member.user.avatarURL)
-//       .setDescription(`Welcome <@${member.id}> to the server!`));
-//   });
-// };
-
 const { createCanvas, loadImage } = require("canvas");
 const c = createCanvas(100, 100);
 const cc = c.getContext("2d");
 
 exports.commands = {
-  croissant: {
-    description: 'Who likes croissant? Better question, who doesn\'t?!',
-    category: 'Funny',
-    exec(label, args, msg) {
-      return '🥐';
-    }
-  },
   colour: {
     description: 'Display a hex colour in chat.',
     category: 'Utils',
@@ -30,7 +11,7 @@ exports.commands = {
     exec(label, args, msg) {
       // Check if hex is provided.
       if (args.length === 0)
-        return "No values supplied. Usage: !colourDisplay <hex>";
+        return "No values supplied. Usage: !colour <hex>";
 
       // Check if hex is valid.
       let match = args[0].match(/^#?([0-9A-F]{6}|[0-9A-F]{3})$/i);
