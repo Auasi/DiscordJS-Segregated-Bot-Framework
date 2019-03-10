@@ -1,4 +1,4 @@
-const { createCanvas, loadImage } = require("canvas");
+const { createCanvas} = require("canvas");
 const c = createCanvas(100, 100);
 const cc = c.getContext("2d");
 
@@ -21,18 +21,18 @@ exports.commands = {
       const colour = `${match[1].toUpperCase()}`; // Hex without hashtag.
       const colourDisplay = `#${colour}`; // Hex with hashtag.
 
-      // Draw background
+      // Draw background.
       cc.fillStyle = colourDisplay;
       cc.fillRect(0, 0, 100, 100);
 
       // Convert the 3-digit hex value to a 6-digit value if needed.
-      colour6 = colour.length === 6 ? colour : colour.split('').map(l => l.padStart(2, l)).join("");
+      let colour6 = colour.length === 6 ? colour : colour.split('').map(l => l.padStart(2, l)).join("");
 
       // Calculate RGB values of the inputted colour for use in the contrast calculation.
-      colourInt = parseInt(colour6, 16);
-      r = (colourInt >> 16) & 255;
-      g = (colourInt >> 8) & 255;
-      b = colourInt & 255;
+      let colourInt = parseInt(colour6, 16);
+      let r = (colourInt >> 16) & 255;
+      let g = (colourInt >> 8) & 255;
+      let b = colourInt & 255;
 
       // Set the text colour to either black or white, depending on which contrasts best with the inputted colour.
       cc.fillStyle = ((r * 0.299) + (g * 0.587) + (b * 0.114) > 186) ? "black" : "white";
@@ -40,7 +40,7 @@ exports.commands = {
       // Draw label.
       cc.font = 'bold 16px Arial';
       cc.textBaseline = "middle";
-      textMetrics = cc.measureText(colourDisplay);
+      let textMetrics = cc.measureText(colourDisplay);
       cc.fillText(colourDisplay, 50 - (textMetrics.width / 2), 50);
 
       // Send message.
